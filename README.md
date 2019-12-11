@@ -21,7 +21,7 @@ $ php artisan key:generate
 $ php artisan migrate
 ```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
-- 你可以經由 `/api/register` 來進行註冊使用者；經由 `/api/login` 來進行開發調試儀表板瀏覽；只能在本地環境經由 `/api/task` 來進行開發調試儀表板瀏覽。
+- 你可以經由 `/api/register` 來進行註冊使用者；經由 `/api/login` 來進行使用者登入；只能在本地環境經由 `/api/task` 來進行任務瀏覽。
 
 ----
 
