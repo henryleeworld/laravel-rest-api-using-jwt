@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use JWTAuth;
 use App\Task;
 
 class TaskController extends Controller
@@ -18,7 +18,7 @@ class TaskController extends Controller
      */
     public function __construct()
     {
-        $this->user = JWTAuth::parseToken()->authenticate();
+        $this->middleware('auth:api', ['except' => []]);
     }
 
     /**
@@ -26,7 +26,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = $this->user->tasks()->get(['title', 'description'])->toArray();
+        $tasks = auth()->user()->tasks()->get(['title', 'description'])->toArray();
         return $tasks;
     }
 
@@ -36,7 +36,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task = $this->user->tasks()->find($id);
+        $task = auth()->user()->tasks()->find($id);
 
         if (!$task) {
             return response()->json([
@@ -63,7 +63,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = $this->user->tasks()->find($id);
+        $task = auth()->user()->tasks()->find($id);
 
         if (!$task) {
             return response()->json([
@@ -90,7 +90,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
 
-        if ($this->user->tasks()->save($task))
+        if (auth()->user()->tasks()->save($task))
             return response()->json([
                 'success' => true,
                 'task' => $task
@@ -109,7 +109,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = $this->user->tasks()->find($id);
+        $task = auth()->user()->tasks()->find($id);
 
         if (!$task) {
             return response()->json([
@@ -118,7 +118,7 @@ class TaskController extends Controller
             ], 400);
         }
 
-        $updated = $task->fill($request->all())->save();
+        $updated = $task->fill($request->except('token'))->save();
 
         if ($updated) {
             return response()->json([

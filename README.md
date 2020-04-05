@@ -1,4 +1,4 @@
-# Laravel 6 使用 JSON Web Token 驗證的具象狀態傳輸應用程式介面
+# Laravel 7 使用 JSON Web Token 驗證的具象狀態傳輸應用程式介面
 
 引入 tymon 的 jwt-auth 套件來擴增實作有限時間內可利用認證令牌要求對應的操作權限的方法，認證令牌就像通行證，保全會看通行證決定你能不能進出某些場所。
 
@@ -26,11 +26,11 @@ $ php artisan migrate
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/NuKu9YE.png)
+![](https://i.imgur.com/G6HcroA.png)
 > 傳送 HTML 表單資料註冊建立使用者，即可取得認證令牌
 
-![](https://i.imgur.com/ZzpcaRT.png)
+![](https://i.imgur.com/4VrotPW.png)
 > 傳送 HTML 表單資料使用建立使用者來做登入，即可取得認證令牌
 
-![](https://i.imgur.com/r9Eu2ej.png)
+![](https://i.imgur.com/vHPL1yQ.png)
 > 傳送 HTML 表單資料提供令牌作身份認證，在有限的時間內，可以使用這個令牌作指定的操作或請求，不需要再重複做登入的動作
