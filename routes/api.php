@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group([
-    'prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1', 'middleware' => 'api'
+    'prefix' => 'v1', 'as' => 'api.', 'namespace' => 'App\Http\Controllers\Api\V1', 'middleware' => 'api'
 ], function ($router) {
     Route::post('/register', 'AuthController@register')->name('register');
     Route::post('/login', 'AuthController@login')->name('login');

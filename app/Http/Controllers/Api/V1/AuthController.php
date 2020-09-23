@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationFormRequest;
-use App\User;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -31,7 +31,6 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
-
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
